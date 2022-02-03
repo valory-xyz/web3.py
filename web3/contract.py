@@ -1197,8 +1197,8 @@ class ContractFunction(BaseContractFunction):
     def call(
         self,
         transaction: Optional[TxParams] = None,
-        block_identifier: BlockIdentifier = "latest",
-        state_override: Optional[CallOverride] = None,
+        block_identifier: BlockIdentifier = None,
+        state_override: Optional[CallOverrideParams] = None,
         ccip_read_enabled: Optional[bool] = None,
     ) -> Any:
         """
@@ -2177,6 +2177,8 @@ async def async_call_contract_function(
 def parse_block_identifier(
     w3: "Web3", block_identifier: BlockIdentifier
 ) -> BlockIdentifier:
+    if block_identifier is None:
+        return web3.eth.default_block
     if isinstance(block_identifier, int):
         return parse_block_identifier_int(w3, block_identifier)
     elif block_identifier in {"latest", "earliest", "pending", "safe", "finalized"}:
