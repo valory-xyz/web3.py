@@ -140,6 +140,7 @@ from web3.types import (  # noqa: F401
     ABIFunction,
     BlockIdentifier,
     CallOverride,
+    CallOverrideParams,
     EventData,
     FilterParams,
     FunctionIdentifier,
@@ -1308,7 +1309,7 @@ class AsyncContractFunction(BaseContractFunction):
     async def call(
         self,
         transaction: Optional[TxParams] = None,
-        block_identifier: BlockIdentifier = "latest",
+        block_identifier: BlockIdentifier = None,
         state_override: Optional[CallOverride] = None,
         ccip_read_enabled: Optional[bool] = None,
     ) -> Any:
@@ -2178,7 +2179,7 @@ def parse_block_identifier(
     w3: "Web3", block_identifier: BlockIdentifier
 ) -> BlockIdentifier:
     if block_identifier is None:
-        return web3.eth.default_block
+        return w3.eth.default_block
     if isinstance(block_identifier, int):
         return parse_block_identifier_int(w3, block_identifier)
     elif block_identifier in {"latest", "earliest", "pending", "safe", "finalized"}:
@@ -2194,6 +2195,8 @@ def parse_block_identifier(
 async def async_parse_block_identifier(
     w3: "Web3", block_identifier: BlockIdentifier
 ) -> Awaitable[BlockIdentifier]:
+    if block_identifier is None:
+        return w3.eth.default_block
     if isinstance(block_identifier, int):
         return await async_parse_block_identifier_int(w3, block_identifier)
     elif block_identifier in {"latest", "earliest", "pending", "safe", "finalized"}:
