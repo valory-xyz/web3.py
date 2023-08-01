@@ -90,7 +90,7 @@ setup(
         "hexbytes>=0.1.0",
         "jsonschema>=4.0.0",
         "lru-dict>=1.1.6",
-        "protobuf>=4.21.6",
+        "protobuf==3.19.5",
         "pywin32>=223;platform_system=='Windows'",
         "requests>=2.16.0",
         # remove typing_extensions after python_requires>=3.8, see web3._utils.compat
@@ -99,7 +99,7 @@ setup(
     ],
     python_requires=">=3.7.2",
     extras_require=extras_require,
-    py_modules=["web3", "ens", "ethpm"],
+    py_modules=["opne-aea-web3", "open-aea-ens", "open-aea-ethpm"],
     entry_points={"pytest11": ["pytest_ethereum = web3.tools.pytest_ethereum.plugins"]},
     license="MIT",
     zip_safe=False,
