@@ -21,7 +21,7 @@ from web3.providers.websocket import (  # noqa: E402
     WebsocketProvider,
 )
 
-__version__ = pkg_resources.get_distribution("web3").version
+__version__ = pkg_resources.get_distribution("open-aea-web3").version
 
 __all__ = [
     "__version__",
