@@ -1,5 +1,5 @@
 [tool.towncrier]
-    package="web3"
+    package="open-aea-web3"
     filename = "docs/releases.rst"
     directory = "newsfragments"
     underlines = ["-", "~", "^"]
